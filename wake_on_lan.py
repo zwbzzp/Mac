@@ -11,7 +11,8 @@ import struct
 def wake(addr, mac):
     mac_data = []
     for i in range(0, 12, 2):
-        mac_data.append(int(mac[i:i+2], 16))
+        mac_data.append(int(mac[i:i+2], 16)) #16表示16进制
+    # struct用于处理二进制，pack(fmt,v1,v2),按照给定的格式把数据封装成字符串，！代表对齐方式按照大端规则，B表示integer
     packet = struct.pack("!BBBBBB", 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF);
     packet_mac = struct.pack("!BBBBBB", *mac_data)
     for i in range(0, 16):
